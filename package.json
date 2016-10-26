@@ -1,6 +1,6 @@
 {
   "name": "angulartics-optimizely",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "An angulartics plugin for optimizely",
   "main": "bundle.js",
   "scripts": {
