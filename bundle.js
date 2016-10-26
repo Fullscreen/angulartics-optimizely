@@ -5,7 +5,11 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
   window.optimizely = window.optimizely || [];
 
   var trackEvent = function trackEvent(what, value) {
-    window.optimizely.push(['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')]);
+    var evt = ['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')];
+    if (value) {
+      evt.push({ revenue: value });
+    }
+    window.optimizely.push(evt);
   };
 
   $analyticsProvider.registerPageTrack(function (path, $location) {
