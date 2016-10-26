@@ -4,8 +4,12 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
   $analyticsProvider.settings.pageTracking.trackRelativePath = true;
   window.optimizely = window.optimizely || [];
 
-  var trackEvent = function trackEvent(what) {
-    window.optimizely.push(['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')]);
+  var trackEvent = function trackEvent(what, value) {
+    var evt = ['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')];
+    if (value) {
+      evt.push({ revenue: value });
+    }
+    window.optimizely.push(evt);
   };
 
   $analyticsProvider.registerPageTrack(function (path, $location) {
@@ -14,8 +18,11 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
     }
   });
 
-  $analyticsProvider.registerEventTrack(function (eventType) {
-    return trackEvent(eventType);
+  $analyticsProvider.registerEventTrack(function (eventType, _ref) {
+    var revenue = _ref.revenue;
+
+    // the only value optimizely will track is revenue
+    trackEvent(eventType, revenue);
   });
 
   $analyticsProvider.registerSetUsername(function (id) {

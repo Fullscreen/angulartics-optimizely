@@ -6,8 +6,12 @@ export default [
     $analyticsProvider.settings.pageTracking.trackRelativePath = true
     window.optimizely = window.optimizely || []
 
-    const trackEvent = (what) => {
-      window.optimizely.push(['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')])
+    const trackEvent = (what, value) => {
+      const evt = ['trackEvent', what.replace(/\s+\|\s+/g, '_').replace(/\W+/g, 'X')]
+      if (value) {
+        evt.push({revenue: value})
+      }
+      window.optimizely.push(evt)
     }
 
     $analyticsProvider.registerPageTrack((path, $location) => {
@@ -16,7 +20,10 @@ export default [
       }
     })
 
-    $analyticsProvider.registerEventTrack(eventType => trackEvent(eventType))
+    $analyticsProvider.registerEventTrack((eventType, {revenue}) => {
+      // the only value optimizely will track is revenue
+      trackEvent(eventType, revenue)
+    })
 
     $analyticsProvider.registerSetUsername(id => window.optimizely.push(['setUserId', id]))
   }
