@@ -21,7 +21,7 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
   $analyticsProvider.registerEventTrack(function (eventType, _ref) {
     var revenue = _ref.revenue;
 
-    // optimizely only has one event that accepts a value
+    // the only value optimizely will track is revenue
     trackEvent(eventType, revenue);
   });
 

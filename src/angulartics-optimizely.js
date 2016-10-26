@@ -21,7 +21,7 @@ export default [
     })
 
     $analyticsProvider.registerEventTrack((eventType, {revenue}) => {
-      // optimizely only has one event that accepts a value
+      // the only value optimizely will track is revenue
       trackEvent(eventType, revenue)
     })
 
