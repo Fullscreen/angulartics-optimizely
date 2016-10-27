@@ -20,7 +20,7 @@ export default [
       }
     })
 
-    $analyticsProvider.registerEventTrack((eventType, {revenue}) => {
+    $analyticsProvider.registerEventTrack((eventType, {revenue} = {}) => {
       // the only value optimizely will track is revenue
       trackEvent(eventType, revenue)
     })
