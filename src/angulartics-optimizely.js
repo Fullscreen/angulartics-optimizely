@@ -24,7 +24,5 @@ export default [
       // the only value optimizely will track is revenue
       trackEvent(eventType, revenue)
     })
-
-    $analyticsProvider.registerSetUsername(id => window.optimizely.push(['setUserId', id]))
   }
 ]

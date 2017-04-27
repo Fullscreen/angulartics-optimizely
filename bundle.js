@@ -26,10 +26,6 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
     // the only value optimizely will track is revenue
     trackEvent(eventType, revenue);
   });
-
-  $analyticsProvider.registerSetUsername(function (id) {
-    return window.optimizely.push(['setUserId', id]);
-  });
 }];
 
 angular.module('angulartics.optimizely', ['angulartics']).config(AngularticsOptimizelyConfig);
