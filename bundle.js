@@ -19,15 +19,15 @@ var AngularticsOptimizelyConfig = ['$analyticsProvider', function AngularticsOpt
   });
 
   $analyticsProvider.registerEventTrack(function (eventType) {
-    var _ref = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
-
-    var revenue = _ref.revenue;
+    var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
+        revenue = _ref.revenue;
 
     // the only value optimizely will track is revenue
     trackEvent(eventType, revenue);
   });
 }];
 
+/* global angular */
 angular.module('angulartics.optimizely', ['angulartics']).config(AngularticsOptimizelyConfig);
 
 module.exports = AngularticsOptimizelyConfig;

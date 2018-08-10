@@ -1,4 +1,5 @@
 {
-  presets: [ "es2015-rollup" ],
-  sourceMaps: true
+  "presets": [ ["env", { "modules": false }] ],
+  "plugins": [ "external-helpers" ],
+  "sourceMaps": true
 }
